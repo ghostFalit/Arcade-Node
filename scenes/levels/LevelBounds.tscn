@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://jx7rc7mrpr3o"]
+
+[ext_resource type="Script" uid="uid://j74jhcfbr6jn" path="res://scripts/core/level_bounds.gd" id="1_nhcll"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rrrl8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jo235"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i5tpc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vaihy"]
+
+[node name="LevelBounds" type="Node" unique_id=232839248]
+script = ExtResource("1_nhcll")
+
+[node name="Walls" type="StaticBody2D" parent="." unique_id=1167562948]
+
+[node name="TopWall" type="CollisionShape2D" parent="Walls" unique_id=459399431]
+shape = SubResource("RectangleShape2D_rrrl8")
+
+[node name="LeftWall" type="CollisionShape2D" parent="Walls" unique_id=503828050]
+shape = SubResource("RectangleShape2D_jo235")
+
+[node name="RightWall" type="CollisionShape2D" parent="Walls" unique_id=398395121]
+shape = SubResource("RectangleShape2D_i5tpc")
+
+[node name="Killzone" type="Area2D" parent="." unique_id=1376366958]
+
+[node name="BottomZone" type="CollisionShape2D" parent="Killzone" unique_id=389711040]
+shape = SubResource("RectangleShape2D_vaihy")
