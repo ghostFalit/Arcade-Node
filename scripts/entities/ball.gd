@@ -13,6 +13,8 @@ func _physics_process(delta: float) -> void:
 			break
 		var collider = collision.get_collider()
 		var normal = collision.get_normal()
+		if collider.has_method("take_damage"):
+			collider.take_damage(1)
 		if collider.is_in_group("paddle") and normal.y < -0.5 and direction.y > 0:
 			var offset = global_position.x - collider.global_position.x
 			var normalized_offset = clampf(offset / collider.half_width, -1.0, 1.0)
