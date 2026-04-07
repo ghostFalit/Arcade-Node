@@ -17,3 +17,6 @@ mono_crash.*.json
 
 # Android build directory
 /android/
+
+builds/
+*.apk

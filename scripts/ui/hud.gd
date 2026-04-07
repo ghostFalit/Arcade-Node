@@ -23,3 +23,6 @@ func _on_level_completed() -> void:
 func _on_restart_button_pressed() -> void:
 	get_tree().paused = false
 	get_tree().reload_current_scene()
+
+func _on_paddle_controller_value_changed(value: float) -> void:
+	Events.paddle_slider_moved.emit(value)
