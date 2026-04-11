@@ -3,9 +3,15 @@ extends CharacterBody2D
 @export var speed: float = 800.0
 @export var direction: Vector2 = Vector2.ZERO
 const MAX_BOUNCE_ANGLE: float = PI / 3.0
+var is_launched: bool = false
+var attach_node: Node2D
 
 # Physics of the Ball
 func _physics_process(delta: float) -> void:
+	if not is_launched:
+		if is_instance_valid(attach_node):
+			global_position = attach_node.global_position - Vector2(0, 30)
+		return
 	var movement = direction * speed * delta
 	var has_damaged: bool = false
 	for i in range(4):

@@ -3,7 +3,6 @@ extends Node
 const BallScene = preload("res://scenes/entities/Ball.tscn")
 var score: int = 0
 var lives: int = 3
-@export var spawn_point: Marker2D
 var bricks_remaining: int = 0
 
 func _ready() -> void:
@@ -12,6 +11,11 @@ func _ready() -> void:
 	Events.level_ready.connect(_on_level_ready)
 	Events.score_updated.emit.call_deferred(0)
 	Events.lives_updated.emit.call_deferred(3)
+	await get_tree().process_frame
+	var screen_size = get_viewport().get_visible_rect().size
+	var paddle_y = screen_size.y * 0.65
+	var slider_y = paddle_y + 50.0
+	Events.layout_calculated.emit(screen_size, slider_y, paddle_y)
 	spawn_ball()
 	
 func _on_brick_destroyed(points: int) -> void:
@@ -37,8 +41,10 @@ func _on_level_ready(total: int) -> void:
 func spawn_ball() -> void:
 	var ball = BallScene.instantiate()
 	ball.direction = Vector2.ZERO
-	ball.global_position = spawn_point.global_position
+	var paddle = get_tree().get_first_node_in_group("paddle")
+	ball.attach_node = paddle
 	get_parent().call_deferred("add_child", ball)
 	await get_tree().create_timer(1.0).timeout
 	if is_instance_valid(ball):
-		ball.direction = Vector2.DOWN
+		ball.is_launched = true
+		ball.direction = Vector2.UP
