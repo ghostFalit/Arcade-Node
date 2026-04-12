@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="Arcade-Node"
-run/main_scene="uid://c3m6txv1724ll"
+run/main_scene="uid://c0nuumcenqtvw"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Events="*uid://c2ooev7j1gp2u"
+LevelManager="*uid://cm5c0x75b7ef0"
 
 [display]
 

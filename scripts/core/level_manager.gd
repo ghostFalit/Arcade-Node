@@ -1,0 +1,14 @@
+extends Node
+
+var current_level_index: int = 0
+
+var levels = [
+	[[1, 1, 1, 1, 1], [1, 1, 1, 1, 1], [1, 1, 1, 1, 1]],
+	[[1, 0, 1, 0, 1], [0, 1, 0, 1, 0], [1, 0, 1, 0, 1]],
+	[[0, 0, 1, 0, 0], [0, 1, 1, 1, 0], [1, 1, 1, 1, 1]]
+]
+
+func get_current_level_data() -> Array:
+	if current_level_index >= 0 and current_level_index < levels.size():
+		return levels[current_level_index]
+	return levels[0]

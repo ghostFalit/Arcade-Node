@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://c0nuumcenqtvw"]
+
+[ext_resource type="Script" uid="uid://dh2lw7qsh3nl0" path="res://scripts/ui/level_selection.gd" id="1_5p7ek"]
+
+[node name="LevelSelection" type="Control" unique_id=377930945]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5p7ek")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=773708086]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0.5019608, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1098898179]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1877173243]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer" unique_id=442416932]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "SELECT LEVEL"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="CenterContainer/VBoxContainer" unique_id=393807581]
+layout_mode = 2
+columns = 3
+
+[node name="BtnLevel1" type="Button" parent="CenterContainer/VBoxContainer/GridContainer" unique_id=1408847075]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "1
+"
+
+[node name="BtnLevel2" type="Button" parent="CenterContainer/VBoxContainer/GridContainer" unique_id=331520827]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "2"
+
+[node name="BtnLevel3" type="Button" parent="CenterContainer/VBoxContainer/GridContainer" unique_id=1607791027]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "3"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/GridContainer/BtnLevel1" to="." method="_on_btn_level_1_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/GridContainer/BtnLevel2" to="." method="_on_btn_level_2_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/GridContainer/BtnLevel3" to="." method="_on_btn_level_3_pressed"]
