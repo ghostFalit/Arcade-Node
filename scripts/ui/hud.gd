@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+var is_game_over: bool = false
+
 func _ready() -> void:
 	Events.score_updated.connect(_on_score_updated)
 	Events.lives_updated.connect(_on_lives_updated)
@@ -16,13 +18,16 @@ func _on_lives_updated(new_lives: int) -> void:
 func _on_game_over() -> void:
 	$Overlay/CenterContainer/VBoxContainer/MessageLabel.text = "GAME OVER"
 	$Overlay.visible = true
+	is_game_over = true
 	
 func _on_level_completed() -> void:
 	$Overlay/CenterContainer/VBoxContainer/MessageLabel.text = "YOU WIN!"
 	$Overlay.visible = true
+	is_game_over = true
 
 func _on_restart_button_pressed() -> void:
 	get_tree().paused = false
+	is_game_over = false
 	get_tree().reload_current_scene()
 
 func _on_paddle_controller_value_changed(value: float) -> void:
@@ -32,3 +37,18 @@ func _on_layout_calculated(screen_size: Vector2, slider_y: float, paddle_y: floa
 	$PaddleController.size.x = screen_size.x
 	$PaddleController.size.y = 100.0
 	$PaddleController.position.y = slider_y
+
+func _on_pause_button_pressed() -> void:
+	if is_game_over: return
+	get_tree().paused = true
+	$PauseOverlay.visible = true
+	$MarginContainer/HBoxContainer/PauseButton.disabled = true
+
+func _on_resume_button_pressed() -> void:
+	$PauseOverlay.visible = false
+	$MarginContainer/HBoxContainer/PauseButton.disabled = false
+	get_tree().paused = false
+
+func _on_menu_button_pressed() -> void:
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://scenes/ui/LevelSelection.tscn")

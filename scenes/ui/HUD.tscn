@@ -42,7 +42,12 @@ text = "Score: 0"
 
 [node name="LivesLabel" type="Label" parent="MarginContainer/HBoxContainer" unique_id=1958982139]
 layout_mode = 2
+size_flags_horizontal = 3
 text = "Lives: 3"
+
+[node name="PauseButton" type="Button" parent="MarginContainer/HBoxContainer" unique_id=1319107641]
+layout_mode = 2
+text = "Pause"
 
 [node name="Overlay" type="ColorRect" parent="." unique_id=1754008757]
 visible = false
@@ -74,6 +79,41 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Restart"
 
+[node name="PauseOverlay" type="ColorRect" parent="." unique_id=472838977]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5882353)
+
+[node name="CenterContainer" type="CenterContainer" parent="PauseOverlay" unique_id=871218356]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseOverlay/CenterContainer" unique_id=536893145]
+layout_mode = 2
+
+[node name="MessageLabel" type="Label" parent="PauseOverlay/CenterContainer/VBoxContainer" unique_id=1988728188]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "PAUSED"
+
+[node name="ResumeButton" type="Button" parent="PauseOverlay/CenterContainer/VBoxContainer" unique_id=491878378]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Resume"
+
+[node name="MenuButton" type="Button" parent="PauseOverlay/CenterContainer/VBoxContainer" unique_id=1921606279]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Levels"
+
 [node name="PaddleController" type="HSlider" parent="." unique_id=2099234668]
 offset_bottom = 120.0
 theme_override_icons/grabber = SubResource("GradientTexture2D_atyv1")
@@ -85,5 +125,8 @@ max_value = 1.0
 step = 0.001
 value = 0.5
 
+[connection signal="pressed" from="MarginContainer/HBoxContainer/PauseButton" to="." method="_on_pause_button_pressed"]
 [connection signal="pressed" from="Overlay/CenterContainer/VBoxContainer/Restart Button" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="PauseOverlay/CenterContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="PauseOverlay/CenterContainer/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="value_changed" from="PaddleController" to="." method="_on_paddle_controller_value_changed"]
