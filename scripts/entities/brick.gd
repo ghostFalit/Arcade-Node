@@ -2,7 +2,6 @@ extends StaticBody2D
 @export var max_hp: int = 1
 var current_hp: int
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	current_hp = max_hp
 	

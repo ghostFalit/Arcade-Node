@@ -9,6 +9,7 @@ size = Vector2(120, 30)
 size = Vector2(120, 30)
 
 [node name="Paddle" type="AnimatableBody2D" unique_id=711358604]
+sync_to_physics = false
 script = ExtResource("1_jv2mh")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1548647130]

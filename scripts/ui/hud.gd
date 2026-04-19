@@ -35,9 +35,9 @@ func _on_paddle_controller_value_changed(value: float) -> void:
 	Events.paddle_slider_moved.emit(value)
 	
 func _on_layout_calculated(screen_size: Vector2, slider_y: float, paddle_y: float) -> void:
-	$PaddleController.size.x = screen_size.x
-	$PaddleController.size.y = 100.0
-	$PaddleController.position.y = slider_y
+	$CustomSlider.size.x = screen_size.x
+	$CustomSlider.size.y = 100.0
+	$CustomSlider.position.y = slider_y
 
 func _on_pause_button_pressed() -> void:
 	if is_game_over: return
