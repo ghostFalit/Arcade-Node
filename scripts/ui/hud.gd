@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 var is_game_over: bool = false
+var is_waiting_for_launch: bool = false
 
 func _ready() -> void:
 	Events.score_updated.connect(_on_score_updated)
@@ -8,6 +9,8 @@ func _ready() -> void:
 	Events.game_over.connect(_on_game_over)
 	Events.level_completed.connect(_on_level_completed)
 	Events.layout_calculated.connect(_on_layout_calculated)
+	Events.ball_spawned.connect(_on_ball_spawned)
+	Events.ball_launched.connect(_on_ball_launched)
 	apply_safe_area()
 
 func _on_score_updated(new_score: int) -> void:
@@ -68,3 +71,14 @@ func _on_pause_restart_button_pressed() -> void:
 	get_tree().paused = false
 	is_game_over = false
 	get_tree().reload_current_scene()
+	
+func _on_ball_spawned() -> void:
+	is_waiting_for_launch = true
+	$CenterContainer/HintLabel.visible = false
+	await get_tree().create_timer(4.0).timeout
+	if is_waiting_for_launch and not is_game_over:
+		$CenterContainer/HintLabel.visible = true
+		
+func _on_ball_launched() -> void:
+	is_waiting_for_launch = false
+	$CenterContainer/HintLabel.visible = false

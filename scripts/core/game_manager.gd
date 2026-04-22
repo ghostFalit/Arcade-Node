@@ -44,6 +44,7 @@ func spawn_ball() -> void:
 	var paddle = get_tree().get_first_node_in_group("paddle")
 	ball.attach_node = paddle
 	get_parent().call_deferred("add_child", ball)
+	Events.ball_spawned.emit.call_deferred()
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch and event.is_pressed():

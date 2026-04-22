@@ -121,6 +121,21 @@ theme = SubResource("Theme_kw0id")
 script = ExtResource("3_6ll6g")
 knob_radius = 48.0
 
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=811833202]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HintLabel" type="Label" parent="CenterContainer" unique_id=1918642122]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.5882353)
+theme_override_font_sizes/font_size = 48
+text = "Tap to launch the ball"
+
 [connection signal="pressed" from="MarginContainer/HBoxContainer/PauseButton" to="." method="_on_pause_button_pressed"]
 [connection signal="pressed" from="Overlay/CenterContainer/VBoxContainer/Restart Button" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="PauseOverlay/CenterContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
