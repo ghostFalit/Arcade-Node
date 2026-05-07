@@ -1,7 +1,7 @@
 extends Node2D
 
 const BrickScene = preload("res://scenes/entities/Brick.tscn")
-@export var margin_top: float = 150.0
+@export var margin_top: float = 70.0
 @export var gap: Vector2 = Vector2(2.0, 2.0)
 const BRICK_SIZE = Vector2(64.0, 32.0)
 
@@ -22,7 +22,7 @@ func _generate_level(play_area: Rect2, slider_y: float, paddle_y: float) -> void
 	var total_width = (columns * scaled_brick_size.x) + ((columns - 1) * scaled_gap.x)
 	var start_x = play_area.position.x + (play_area.size.x - total_width) / 2.0
 	var start_center_x = start_x + (scaled_brick_size.x / 2.0)
-	var start_center_y = margin_top + (scaled_brick_size.y / 2.0)
+	var start_center_y = play_area.position.y + margin_top + (scaled_brick_size.y / 2.0)
 	var actual_brick_count: int = 0
 	for r in range(rows):
 		for c in range(columns):

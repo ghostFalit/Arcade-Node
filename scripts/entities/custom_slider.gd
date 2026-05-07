@@ -31,8 +31,8 @@ func _gui_input(event: InputEvent) -> void:
 func _draw() -> void:
 	var center_y = size.y / 2.0
 	var offset = track_thickness / 2.0
-	var left_center = Vector2(track_radius + offset, center_y)
-	var right_center = Vector2(size.x - track_radius - offset, center_y)
+	var left_center = Vector2(track_radius, center_y)
+	var right_center = Vector2(size.x - track_radius, center_y)
 	draw_arc(left_center, track_radius, PI/2.0, 3.0*PI/2.0, 32, track_color, track_thickness, true)
 	draw_arc(right_center, track_radius, -PI/2.0, PI/2.0, 32, track_color, track_thickness, true)
 	var top_left = left_center + Vector2(0, -track_radius)

@@ -43,8 +43,6 @@ func _on_layout_calculated(play_area: Rect2, slider_y: float, paddle_y: float) -
 	$CustomSlider.size.y = 130.0
 	$CustomSlider.position.y = slider_y
 	$CustomSlider.queue_redraw()
-	$MarginContainer.add_theme_constant_override("margin_left", play_area.position.x + 20)
-	$MarginContainer.add_theme_constant_override("margin_right", play_area.position.x + 20)
 
 func _on_pause_button_pressed() -> void:
 	if is_game_over: return

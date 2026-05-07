@@ -13,13 +13,18 @@ func _ready() -> void:
 	Events.lives_updated.emit.call_deferred(3)
 	await get_tree().process_frame
 	var screen_size = get_viewport().get_visible_rect().size
-	var side_margin = 10.0
-	var top_margin = 60.0
+	var safe_area = DisplayServer.get_display_safe_area()
+	var top_ratio = float(safe_area.position.y) / float(DisplayServer.screen_get_size().y) if DisplayServer.screen_get_size().y > 0 else 0.0
+	var safe_margin_top = top_ratio * screen_size.y
+	var top_ui_height = safe_margin_top + 60.0
+	var slider_y = screen_size.y * 0.70
+	var paddle_y = slider_y - 80.0 
+	var side_margin = 10.0 
+	var play_x = side_margin
 	var play_width = screen_size.x - (side_margin * 2.0)
-	var play_height = screen_size.y - top_margin
-	var play_area = Rect2(side_margin, top_margin, play_width, play_height)
-	var paddle_y = screen_size.y * 0.65
-	var slider_y = paddle_y + 75.0
+	var play_y = top_ui_height
+	var play_height = (screen_size.y - play_y) + 200.0 
+	var play_area = Rect2(play_x, play_y, play_width, play_height)
 	Events.layout_calculated.emit(play_area, slider_y, paddle_y)
 	spawn_ball()
 	
